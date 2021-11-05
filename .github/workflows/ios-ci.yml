@@ -14,8 +14,4 @@ jobs:
     steps:
     - uses: actions/checkout@main
     - name: prepare
-      run: |
-        xcodebuild -workspace GimmiekCore -scheme Core
-        xcodebuild -list
-    - name: Build
-      run: xcodebuild clean build -workspace "GimmiekCore.xcworkspace" -scheme Core
+      run: xcodebuild -scheme Core -destination "platform=iOS Simulator,name=iPhone 12 Pro,OS=latest" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
