@@ -16,5 +16,6 @@ jobs:
     - name: Start xcodebuild test
       run: |
         xcodebuild -scheme GimmiekCore
+        xcodebuild -list
         xcodebuild clean build -workspace "GimmiekCore.xcworkspace" -scheme Core
 
