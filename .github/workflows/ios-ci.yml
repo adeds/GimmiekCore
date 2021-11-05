@@ -15,7 +15,7 @@ jobs:
     - uses: actions/checkout@main
     - name: Start xcodebuild test
       run: |
-        xcodebuild -scheme GimmiekCore
+        xcodebuild -workspace GimmiekCore
         xcodebuild -list
         xcodebuild clean build -workspace "GimmiekCore.xcworkspace" -scheme Core
 
