@@ -9,9 +9,6 @@
 // To parse the JSON, add this file to your project and do:
 //
 //   let game = try? newJSONDecoder().decode(Game.self, from: jsonData)
-
-import Foundation
-
 // MARK: - Game
 public struct Game: Codable {
     let results: [GameResult]
