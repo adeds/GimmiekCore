@@ -5,8 +5,6 @@
 //  Created by Ade Dyas  on 14/08/21.
 //
 
-import Foundation
-
 public class GameUiModel {
     public var gameId: Int?
     public var name, released, updated: String
