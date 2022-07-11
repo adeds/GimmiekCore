@@ -5,6 +5,10 @@ on:
     branches:
       - main
       - dev
+  pull_request:
+    branches: 
+      - main
+      - dev
 
 jobs:
   build:
@@ -12,8 +16,13 @@ jobs:
     runs-on: macOS-latest
 
     steps:
-    - uses: actions/checkout@main
+    - uses: actions/checkout@v3
+    - name: check version
+      run: xcodebuild -scheme Core -showdestinations
     - name: run clean build
-      run: xcodebuild clean build -scheme Core -destination "platform=iOS Simulator,name=iPhone 12 Pro,OS=latest" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
+      run: |
+        device=`xcrun xctrace list devices 2>&1 | grep -oE 'iPhone.*' | head -1 | awk -F '[()]' '{print $4}'`
+        echo $device
+        xcodebuild build-for-testing -scheme Core -destination "id=$device"
     - name: run test
       run: xcodebuild test -scheme Core -destination "platform=iOS Simulator,name=iPhone 12 Pro,OS=latest" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
